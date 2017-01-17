@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/birkirbrynjarsson/wepo-whiteboard#readme",
   "devDependencies": {
+    "eslint": "^3.13.1",
     "gulp": "^3.9.1"
   }
 }
