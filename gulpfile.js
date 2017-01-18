@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
+var sass = require('gulp-sass');
 
 gulp.task('browserSync', function() {
     browserSync.init(null, {
@@ -34,4 +35,11 @@ gulp.task("default", ["browserSync", "css", "watch"], function() {
 
 gulp.task('hello', function() {
     console.log('Hello Zell');
-})
+});
+
+// A real task takes in two additional gulp methods, gulp.src and gulp.dest
+gulp.task('sass', function() {
+    return gulp.src('app/scss/style.scss') // What files to use
+    .pipe(sass()) // Sends file through plugin
+    .pipe(gulp.dest('app/css')) // Where to output the files
+});
