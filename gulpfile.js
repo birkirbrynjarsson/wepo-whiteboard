@@ -22,13 +22,6 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('app/css')); // Where to output the files
 });
 
-gulp.task('css', function() {
-    return gulp.src('app/css/**/*.css')
-        .pipe(browserSync.reload({
-            stream: true
-        }));
-});
-
 /*
     GULP WATCH
     Watches files, executes tasks on changes
@@ -36,8 +29,7 @@ gulp.task('css', function() {
 
 gulp.task('watch', function() {
     gulp.watch('app/scss/**/*.scss', ['sass']);
-    gulp.watch('app/css/**/*.css', ['css']);
-    gulp.watch('app/**/*.html', ['html']);
+    gulp.watch('app/css/**/*.css', browserSync.reload);
     gulp.watch('app/*.html', browserSync.reload);
     gulp.watch('app/js/**/*.js', browserSync.reload); 
 });
