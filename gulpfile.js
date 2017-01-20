@@ -39,6 +39,6 @@ gulp.task('watch', function() {
     Default task to serve up a server and start watching files for changes
 */
 
-gulp.task('serve', ['browserSync', 'css', 'sass', 'watch'], function() {
+gulp.task('serve', ['browserSync', 'sass', 'watch'], function() {
 
 });
