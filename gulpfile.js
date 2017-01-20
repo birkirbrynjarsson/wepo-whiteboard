@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
+var bower = require('gulp-bower');
+// var include = require('gulp-include');
 
 /*
     GULP TASKS
@@ -16,6 +18,10 @@ gulp.task('browserSync', function() {
 });
 
 // A real task takes in two additional gulp methods, gulp.src and gulp.dest
+gulp.task('bower', function() {
+    return bower();
+});
+
 gulp.task('sass', function() {
     return gulp.src('app/scss/**/*.scss') // What files to use
         .pipe(sass()) // Sends file through plugin // using gulp-sass
@@ -31,7 +37,7 @@ gulp.task('watch', function() {
     gulp.watch('app/scss/**/*.scss', ['sass']);
     gulp.watch('app/css/**/*.css', browserSync.reload);
     gulp.watch('app/*.html', browserSync.reload);
-    gulp.watch('app/js/**/*.js', browserSync.reload); 
+    gulp.watch('app/js/**/*.js', browserSync.reload);
 });
 
 /*
@@ -39,6 +45,6 @@ gulp.task('watch', function() {
     Default task to serve up a server and start watching files for changes
 */
 
-gulp.task('serve', ['browserSync', 'sass', 'watch'], function() {
+gulp.task('serve', ['bower', 'browserSync', 'sass', 'watch'], function() {
 
 });

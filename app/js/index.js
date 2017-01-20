@@ -17,10 +17,10 @@ class Rectangle extends Shape {
     }
 }
 
-canvasObj = document.getElementById('myCanvas');
+var canvasObj = document.getElementById('myCanvas');
 
 $('myCanvas').on('mousedown', function() {
-    shape = undefined;
+    var shape = undefined;
     if (nextObject === 'Circle') {
         // TODO: create an instance of circle
     } else if (nextObject === 'Rectangle') {
