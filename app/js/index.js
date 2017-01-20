@@ -24,6 +24,6 @@ $('myCanvas').on('mousedown', function() {
     if (nextObject === 'Circle') {
         // TODO: create an instance of circle
     } else if (nextObject === 'Rectangle') {
-
+        // TODO
     }
 });

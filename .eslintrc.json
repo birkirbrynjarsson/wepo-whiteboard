@@ -6,6 +6,7 @@
         "node": true
     },
     "parserOptions": {
+        "ecmaVersion": 6,
         "ecmaFeatures": {
             "jsx": true
         },
@@ -18,6 +19,9 @@
         "no-unreachable": "warn",
         "no-unused-vars": "warn",
         "constructor-super": "warn",
-        "valid-typeof": "warn"
+        "valid-typeof": "warn",
+        "semi": 2,
+        "quotes": [2, "single"],
+        "eqeqeq": [2, "always"]
     }
 }
