@@ -7,15 +7,25 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <div class="row">
+      <!--  <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
                 <canvas id="myCanvas"></canvas>
                 Color: <input class="jscolor">
+
             </div>
             <div class="col-sm-3"></div>
-        </div>
-        
+        </div>-->
+        <canvas id="myCanvas"></canvas>
+        <nav class="navbar navbar-inverse floating-menu">
+            <h2>Toolbar</h2>
+            <div class="btn-group-vertical" id="shapeBtn">
+                <button type="button" class="btn btn-primary">Pen</button>
+                <button type="button" class="btn btn-primary">Circle</button>
+                <button type="button" class="btn btn-primary">Rectangle</button>
+            </div>
+            <p>Color: <input class="jscolor"></p>
+        </nav>
         
         
         <script type="text/javascript" src="js/index.js"></script>
