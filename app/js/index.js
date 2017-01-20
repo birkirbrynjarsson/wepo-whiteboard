@@ -27,10 +27,11 @@ $(document).ready(function(){
     $('#myCanvas').click(function(e){;
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
-
+        var newColor = $('.jscolor').val();
         console.log('X: ' + x + ',' + 'Y: ' + y);
         
-        context.fillStyle = 'blue';
+
+        context.fillStyle = "#"+newColor;
         context.fillRect(x - 10, y - 10, 20, 20);
     });
     
