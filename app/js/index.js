@@ -17,6 +17,7 @@ class Rectangle extends Shape {
     }
 }
 
+
 //canvasObj = document.getElementById('myCanvas');
 
 $(document).ready(function(){
@@ -43,4 +44,3 @@ $(document).ready(function(){
 //         // TODO
 //     }
 // });
-
