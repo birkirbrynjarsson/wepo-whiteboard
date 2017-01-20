@@ -29,13 +29,6 @@ gulp.task('css', function() {
         }));
 });
 
-gulp.task('html', function() {
-    return gulp.src('app/**/*.html')
-        .pipe(browserSync.reload({
-            stream: true
-        }));
-});
-
 /*
     GULP WATCH
     Watches files, executes tasks on changes
@@ -45,6 +38,8 @@ gulp.task('watch', function() {
     gulp.watch('app/scss/**/*.scss', ['sass']);
     gulp.watch('app/css/**/*.css', ['css']);
     gulp.watch('app/**/*.html', ['html']);
+    gulp.watch('app/*.html', browserSync.reload);
+    gulp.watch('app/js/**/*.js', browserSync.reload); 
 });
 
 /*
