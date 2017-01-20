@@ -17,18 +17,20 @@ class Rectangle extends Shape {
     }
 }
 
-canvasObj = document.getElementById('myCanvas');
+//canvasObj = document.getElementById('myCanvas');
 
 $(document).ready(function(){
     var canvas = document.getElementById('myCanvas');
     var context = canvas.getContext('2d');
 
-    $('#myCanvas').mousedown(function(e){;
+    $('#myCanvas').click(function(e){;
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
-        //console.log('X:' + x + ',' + 'Y:' + y);
+
+        console.log('X: ' + x + ',' + 'Y: ' + y);
+        
         context.fillStyle = 'blue';
-        context.fillRect(x - 30, y - 30, 60, 60);
+        context.fillRect(x - 10, y - 10, 20, 20);
     });
     
 });
