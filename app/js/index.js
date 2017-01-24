@@ -1,4 +1,14 @@
-//canvasObj = document.getElementById('myCanvas');
+canvasObj = document.getElementById('myCanvas');
+
+canvasObj.width = window.innerWidth;
+canvasObj.height = window.innerHeight;
+
+window.onresize = function() {
+    var image = context.getImageData(0,0, canvas.width, canvas.height);
+    canvasObj.width = window.innerWidth;
+    canvasObj.height = window.innerHeight;
+    context.putImageData(image, 0,0);
+}
 
 $(document).ready(function(){
     var canvas = document.getElementById('myCanvas');
