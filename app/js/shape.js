@@ -26,3 +26,12 @@ class Circle extends Shape {
         super.doStuff();
     }*/
 }
+
+class Text extends Shape {
+    constructor(text, fontSize, font) {
+        super();
+        this.text = text;
+        this.fontSize = fontSize;
+        this.font = font;
+    }
+}
