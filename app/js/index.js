@@ -1,10 +1,11 @@
-canvasObj = document.getElementById('myCanvas');
+var canvasObj = document.getElementById('myCanvas');
+var context = canvasObj.getContext('2d');
 
 canvasObj.width = window.innerWidth;
 canvasObj.height = window.innerHeight;
 
 window.onresize = function() {
-    var image = context.getImageData(0,0, canvas.width, canvas.height);
+    var image = context.getImageData(0,0, canvasObj.width, canvasObj.height);
     canvasObj.width = window.innerWidth;
     canvasObj.height = window.innerHeight;
     context.putImageData(image, 0,0);
@@ -58,9 +59,13 @@ $(document).ready(function(){
                 ctx.stroke();
             };
                 
-        }else if(shape === 'rectangle'){
-           
-        }else if(shape === 'circle'){
+        }
+        
+        else if(shape === 'line'){
+            
+        }
+
+        else if(shape === 'circle'){
 
         }
 
