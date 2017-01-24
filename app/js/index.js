@@ -1,39 +1,67 @@
-class Shape {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-    doStuff() {
-        //
-    }
-}
-
-class Rectangle extends Shape {
-    constructor() {
-        super();
-    }
-    doStuff() {
-        super.doStuff();
-    }
-}
-
-
 //canvasObj = document.getElementById('myCanvas');
 
 $(document).ready(function(){
     var canvas = document.getElementById('myCanvas');
-    var context = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
 
-    $('#myCanvas').click(function(e){;
-        var x = e.pageX - this.offsetLeft;
-        var y = e.pageY - this.offsetTop;
-        var newColor = $('.jscolor').val();
-        console.log('X: ' + x + ',' + 'Y: ' + y);
+    $('#myCanvas').mousedown(function(e){
         
+        var shape = $('input[name="shape"]:checked').val();
+        var x = e.pageX;
+        var y = e.pageY;
+        var color = $('.jscolor').val();
+        
+        if(shape === 'pen'){
+           	var mouse = {x: 0, y: 0};
+	        var last_mouse = {x: 0, y: 0};
+	
+            /* Mouse Capturing Work */
+            canvas.addEventListener('mousemove', function(e) {
+                last_mouse.x = mouse.x;
+                last_mouse.y = mouse.y;
+                
+                mouse.x = e.pageX - this.offsetLeft;
+                mouse.y = e.pageY - this.offsetTop;
+            }, false);
+	
+	
+            /* Drawing on Paint App */
+            ctx.lineWidth = 1;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#'+color;
+            canvas.style.cursor = "crosshair";
+            
+            canvas.addEventListener('mousedown', function(e) {
+                canvas.addEventListener('mousemove', onPaint, false);
+            }, false);
+            
+            canvas.addEventListener('mouseup', function() {
+                canvas.removeEventListener('mousemove', onPaint, false);
+            }, false);
+            
+            var onPaint = function() {
+                ctx.beginPath();
+                ctx.moveTo(last_mouse.x, last_mouse.y);
+                ctx.lineTo(mouse.x, mouse.y);
+                ctx.closePath();
+                ctx.stroke();
+            };
+                
+        }else if(shape === 'rectangle'){
+           
+        }else if(shape === 'circle'){
 
-        context.fillStyle = "#"+newColor;
-        context.fillRect(x - 10, y - 10, 20, 20);
+        }
+
     });
+
+    $('#myCanvas').mouseup(function(e){
+        var x = e.pageX;
+        var y = e.pageY;
+    });
+
+    
     
 });
 
@@ -45,3 +73,13 @@ $(document).ready(function(){
 //         // TODO
 //     }
 // });
+
+     /*   var x = e.pageX - this.offsetLeft;
+        var y = e.pageY - this.offsetTop;
+        var newColor = $('.jscolor').val();
+        console.log('X: ' + x + ',' + 'Y: ' + y);
+        
+
+        context.fillStyle = '#'+newColor;
+        context.fillRect(x - 10, y - 10, 20, 20);*/
+        /*context.clearRect(0, 0, 1280, 960);*/

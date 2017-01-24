@@ -12,30 +12,40 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-      <!--  <div class="row">
+<!--        <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
-                <canvas id="myCanvas"></canvas>
+                <canvas id="myCanvas" width='1280' height='960'></canvas>
                 Color: <input class="jscolor">
 
             </div>
             <div class="col-sm-3"></div>
         </div>-->
-
+        
         <canvas id='myCanvas' width='1280' height='960'></canvas>
 
         <nav class="navbar navbar-inverse floating-menu">
             <h2>Toolbar</h2>
             <div class="btn-group-vertical" id="shapeBtn">
-                <button type="button" class="btn btn-primary">Pen</button>
-                <button type="button" class="btn btn-primary">Circle</button>
-                <button type="button" class="btn btn-primary">Rectangle</button>
+                <!--<button type="button" class="btn btn-primary" id="penShape">Pen</button>
+                <button type="button" class="btn btn-primary" id="circleShape">Circle</button>
+                <button type="button" class="btn btn-primary" id="rectShape">Rectangle</button>-->
+                <div class="radio">
+                    <label><input type="radio" name="shape" checked="checked" value="pen">Pen</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="shape" value="rectangle">Rectangle</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="shape" value="circle">Circle</label>
+                </div>
             </div>
             <p>Color: <input class="jscolor"></p>
         </nav>
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>       
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js'></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>       
+        <script type="text/javascript" src="js/shape.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jscolor.js"></script>
 
