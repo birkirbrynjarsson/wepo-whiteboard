@@ -13,15 +13,7 @@
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-left" id="toolbar">
-            <!--<a class="navbar-brand" href="#">Toolbar</a>
-            <ul class="nav navbar-nav">
-                
-                <li><a href="#">pen</a></li>
-                <li><a href="#">Link3</a></li>
-                <li><a href="#">Link4</a></li>
-                <li><a href="#">Link5</a></li>
-            </ul>-->
-            <p>Kanner</p>
+            <h1>Kanner</h1>
             <hr>
             <div class="btn-group-vertical" data-toggle="buttons" id="shape">
                 <label class="btn btn-info active">
@@ -46,13 +38,18 @@
                 </label>
             </div>
            <hr>
-           <div id='colors' class='colorcontrol btn btn-info cointainer-fluid'>
-               <div class="row">
-                   <div class="col-md-4"><p>Color:</p></div>
-                   <div class="col-md-8"> <input class="form-control jscolor" id="colorPicker" value='000000'></div>
-               </div>                  
+           <div id="colorDiv">
+               <p>Color</p>
+               <input class="form-control jscolor" id="colorPicker" value="000000">
            </div>
            <hr>
+           <div id="sliderDiv">
+               <p id="thicknessP">Thickness</p>
+                <div class="range-slider">
+                    <input class="range-slider__range" id="thickness" type="range" value="1" min="1" max="10">
+                    <span class="range-slider__value" id="thicknessP">0</span>
+                </div>
+           </div>
         </div>
         <div class="container">
             <div class="row">
