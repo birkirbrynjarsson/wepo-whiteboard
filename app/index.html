@@ -12,7 +12,49 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <div id='toolbar'>
+        <div class="navbar navbar-inverse navbar-fixed-left">
+            <!--<a class="navbar-brand" href="#">Toolbar</a>
+            <ul class="nav navbar-nav">
+                
+                <li><a href="#">pen</a></li>
+                <li><a href="#">Link3</a></li>
+                <li><a href="#">Link4</a></li>
+                <li><a href="#">Link5</a></li>
+            </ul>-->
+            <div class="btn-group-vertical" data-toggle="buttons" id="shape">
+                <label class="btn btn-primary active">
+                    <input type="radio" name="shape" id="pen" value="pen" autocomplete="off" checked> Pen
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="shape" id="circle" value="circle" autocomplete="off"> Circle
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="shape" id="rectangle" value="rectangle" autocomplete="off"> Rectangle
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="shape" id="text" value="text" autocomplete="off"> Text
+                </label>
+            </div>
+           
+        </div>
+        <div class="container">
+            <div class="row">
+                 <canvas id='myCanvas'></canvas>
+            </div>
+        </div>  
+
+
+
+
+  <!--      <div class="container">
+            <div class="row">
+                <div class="col-md-2 no-float" id="left">
+
+                </div>
+                <div class="col-md-10 no-float" id="right"></div>
+            </div>
+        </div>-->
+     <!--   <div id='toolbar'>
             <div id='thickness'>
                 Thickness <span id='thickval'>10</span>
                 <div id='decrease' class='toolbarcontrol'>+</div>
@@ -50,7 +92,7 @@
                     </div>
                 </div>
         </div>
-        <canvas id='myCanvas'></canvas>
+        <canvas id='myCanvas'></canvas>-->
 
         <!--<nav class="navbar navbar-inverse floating-menu">
             <h2>Toolbar</h2>
