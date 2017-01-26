@@ -3,18 +3,13 @@ body {
 }
 
 #myCanvas {
-   // border: 1px solid black;
     width: auto;
-    //height: 100%;
-    display: block;;
-   background: yellow;
-    
+    display: block;
     //position: absolute; z-index: 1;
 }
 
 .container {
-    background: blue;
-    margin: 0;
+    /*margin: 0;*/
 }
 
 .navbar-fixed-left {
@@ -22,23 +17,52 @@ body {
   position: fixed;
   border-radius: 0;
   height: 100%;
+  text-align: center;
 }
 
-.navbar-fixed-left .navbar-nav > li {
-  float: none;  /* Cancel default li float: left */
-  width: 139px;
+#toolbar > p{
+    padding-top: 15px;
+    color: grey;
+    font-size: 30px;
+    
 }
 
-.navbar-fixed-left + .container {
-  //padding-left: 160px;
+#toolbar > hr  {
+    margin-top: 20px;
+    border-color: #484747;
 }
 
-/* On using dropdown menu (To right shift popuped) */
-.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-  margin-top: -50px;
-  margin-left: 140px;
+#shape {
+    width: 80%;
 }
 
-#shapes {
-    margin: 10 10 10 10;
+#shape > label{
+    align-self: left;
+    text-align: left;
+    margin-top: 1px;
+}
+
+#shape > label > span {
+    margin-right: 10px;
+}
+
+.colorcontrol {
+    width: 80%;
+    text-align: left;
+    align-content: right;
+    height: 38px;
+}
+
+/*#colorP {
+    height:10px;
+    width: 80%;
+    text-align: right;
+    align-content: right;
+}*/
+
+#colorPicker {
+    width: 80px;
+    height: 25px; 
+    margin: 0px 0px 0px 0px;
+    
 }

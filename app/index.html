@@ -8,11 +8,11 @@
         <!-- Bootstrap CSS + Optional Theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+        <link rel="stylesheet" href="css/font-awesome.min.css">
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-left">
+        <div class="navbar navbar-inverse navbar-fixed-left" id="toolbar">
             <!--<a class="navbar-brand" href="#">Toolbar</a>
             <ul class="nav navbar-nav">
                 
@@ -21,21 +21,38 @@
                 <li><a href="#">Link4</a></li>
                 <li><a href="#">Link5</a></li>
             </ul>-->
+            <p>Kanner</p>
+            <hr>
             <div class="btn-group-vertical" data-toggle="buttons" id="shape">
-                <label class="btn btn-primary active">
+                <label class="btn btn-info active">
+                    <span class="fa fa-pencil"></span> 
                     <input type="radio" name="shape" id="pen" value="pen" autocomplete="off" checked> Pen
                 </label>
-                <label class="btn btn-primary">
+                <label class="btn btn-info">
+                    <span class="fa fa-circle-o"></span> 
                     <input type="radio" name="shape" id="circle" value="circle" autocomplete="off"> Circle
                 </label>
-                <label class="btn btn-primary">
+                <label class="btn btn-info">
+                    <span class="fa fa-square-o"></span> 
                     <input type="radio" name="shape" id="rectangle" value="rectangle" autocomplete="off"> Rectangle
                 </label>
-                <label class="btn btn-primary">
+                <label class="btn btn-info">
+                     <span class="fa fa-font"></span>
                     <input type="radio" name="shape" id="text" value="text" autocomplete="off"> Text
                 </label>
+                <label class="btn btn-info">
+                     <span class="fa fa-eraser"></span>
+                    <input type="radio" name="shape" id="eraser" value="text" autocomplete="off"> Eraser
+                </label>
             </div>
-           
+           <hr>
+           <div id='colors' class='colorcontrol btn btn-info cointainer-fluid'>
+               <div class="row">
+                   <div class="col-md-4"><p>Color:</p></div>
+                   <div class="col-md-8"> <input class="form-control jscolor" id="colorPicker" value='000000'></div>
+               </div>                  
+           </div>
+           <hr>
         </div>
         <div class="container">
             <div class="row">
