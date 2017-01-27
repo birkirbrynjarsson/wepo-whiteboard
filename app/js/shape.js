@@ -7,6 +7,12 @@ class Shape {
         this.color = color;
         this.width = width;
     }
+
+    endPoints(x, y){
+        this.endX = x;
+        this.endY = y;
+    }
+
 /*    doStuff() {
         //
     }*/
@@ -28,23 +34,24 @@ class Pen extends Shape {
 
 class Rectangle extends Shape {
     constructor(startX, startY, color) {
-        super(startX, startY, undefined, undefined, color);
+        super(startX, startY, startX, startY, color);
     }
     
+
+
     doStuff() {
         super.doStuff();
     }
 
     draw(context) {
         context.strokeStyle = '#'+this.color;
-        context.strokeRect(this.startX, this.startY, 50, 50);
-        //console.log('x: ' + this.startX, 'y: ' + this.startY);
+        context.strokeRect(this.startX, this.startY, this.endX, this.endY);
     }
 }
 
 class Circle extends Shape {
     constructor(startX, startY, color) {
-        super(startX, startY, undefined, undefined, color);
+        super(startX, startY, startX, startY, color);
     }
 
     doStuff() {

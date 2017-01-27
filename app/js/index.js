@@ -49,10 +49,14 @@ $(document).ready(function(){
 
     $('#myCanvas').mousedown(function(e){
         
+        settings.thickness = $('#thickness').val();
         settings.nextShape = $('input[name="shape"]:checked').val();
         settings.nextColor = $('.jscolor').val();
+        console.log(settings.thickness);
         var x = e.pageX;
         var y = e.pageY;
+
+        var shape;
         
         if(settings.nextShape === 'pen') {
             shape = new Pen(x, y, settings.nextColor);
@@ -69,8 +73,12 @@ $(document).ready(function(){
         else if(settings.nextShape === 'text') {
 
         }
+
+        $('#myCanvas').mousemove(function(e){
+            shape.endPoints(e.pageX, e.pageY);
+        });
         
-        shape.draw(ctx);
+        
 
         // if(settings.nextShape === 'pen'){
         //     x.draw();
