@@ -22,7 +22,7 @@ body {
 
 #toolbar > h1{
     padding-top: 15px;
-    color: grey;
+    color: lightgrey;
     font-size: 30px;
 }
 
@@ -73,21 +73,23 @@ body {
 }
 
 #thickness {
-    width: 70%;
-    margin-left: 5px;
+    width: 65%;
+    margin-left: 20px;
     display: inline-block;
     float: left;
 }
 
 #thick {
-    font-size: 10px;
+    font-size: 14px;
     color: white;
     float:left;
 }
 
 #thicknessP{
-    margin-left: 20px;
+    margin-left: 0px;
+    margin-right: 5px;
     color: lightgrey;
+    
 }
 
 #sliderDiv > p {
@@ -96,17 +98,61 @@ body {
     text-align: left;
 }
 
-#amount {
-    width: 20px;
-    border: 0px;
-    color: lightgray;
-    background: transparent;
-}
-
-#ex1Slider .slider-selection {
+/*#ex1Slider .slider-selection {
 	background: #BABABA;
 }
-
-.range-slider__range {
+*/
+/*.range-slider__range {
     width: 80%;
+}
+*/
+#undoButtons {
+    margin-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    margin-bottom: 60px;
+}
+
+#undoBtn {
+    float: left;
+}
+
+#redoBtn {
+    float: right;
+}
+
+#fontDiv > p{
+    margin-left: 20px;
+    color: lightgray;
+    text-align: left;
+    float: left;
+}
+
+#fontdiv {
+    
+}
+
+#fontPicker {
+    width: 60%;
+    height: 23px;
+    margin-left: 10px;
+    margin-right: auto;
+    float: left;
+}
+
+#fontSizeDiv > p {
+    margin-left: 0px;
+    color: lightgray;
+    text-align: left;
+    float: left; 
+}
+
+#fontSize{
+    width: 60%;
+    height: 23px;
+    margin-left: 10px;
+    margin-right: auto;
+    float: left;
 }
