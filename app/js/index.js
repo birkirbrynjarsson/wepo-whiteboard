@@ -1,20 +1,31 @@
-var canvasObj = document.getElementById('myCanvas');
-var context = canvasObj.getContext('2d');
-
-canvasObj.width = window.innerWidth;
-canvasObj.height = window.innerHeight;
-
-window.onresize = function() {
-    var image = context.getImageData(0,0, canvasObj.width, canvasObj.height);
-    canvasObj.width = window.innerWidth;
-    canvasObj.height = window.innerHeight;
-    context.putImageData(image, 0,0);
+var settings = {
+    canvas: document.getElementById('myCanvas'),
+    nextShape:  "pen",
+    nextColor:  000000,
+    nextFont:   'Arial',
+    fontSize:   12,
+    thickness:  1,
+    startX:     0,
+    startY:     0,
+    endX:       0,
+    endY:       0,
+    isDrawing: false,
 }
+
+
+// settings.nextShape = $('input[name="shape"]:checked').val();
+// settings.nextColor = $('.jscolor').val();
+
+var ctx = settings.canvas.getContext('2d');
+settings.canvas.style.cursor = "crosshair";
+settings.canvas.width = screen.width;
+settings.canvas.height = screen.height;
+
 
 $(document).ready(function(){
 
-  //thickness range Slider 
-  var rangeSlider = function(){
+      //thickness range Slider 
+    var rangeSlider = function(){
       var slider = $('.range-slider'),
       range = $('.range-slider__range'),
       value = $('.range-slider__value');
@@ -27,72 +38,96 @@ $(document).ready(function(){
               $(this).next(value).html(this.value);
           });
       });
-   };
+    };
 
     rangeSlider();
 
-    var canvas = document.getElementById('myCanvas');
-    var ctx = canvas.getContext('2d');
+    
+    $('#toolbar').mousedown(function(){
+        settings.nextColor = $('.jscolor').val();
+    });
 
     $('#myCanvas').mousedown(function(e){
         
-        var shape = $('input[name="shape"]:checked').val();
+        settings.nextShape = $('input[name="shape"]:checked').val();
+        settings.nextColor = $('.jscolor').val();
+        var color = settings.nextColor;
+        console.log(settings.nextColor);
         var x = e.pageX;
         var y = e.pageY;
-        var color = $('.jscolor').val();
         
-        if(shape === 'pen'){
-           	var mouse = {x: 0, y: 0};
-	        var last_mouse = {x: 0, y: 0};
-	
-            /* Mouse Capturing Work */
-            canvas.addEventListener('mousemove', function(e) {
-                last_mouse.x = mouse.x;
-                last_mouse.y = mouse.y;
-                
-                mouse.x = e.pageX - this.offsetLeft;
-                mouse.y = e.pageY - this.offsetTop;
-            }, false);
-	
-	
-            /* Drawing on Paint App */
-            ctx.lineWidth = 1;
-            ctx.lineJoin = 'round';
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = '#'+color;
-            canvas.style.cursor = "crosshair";
-            
-            canvas.addEventListener('mousedown', function(e) {
-                canvas.addEventListener('mousemove', onPaint, false);
-            }, false);
-            
-            canvas.addEventListener('mouseup', function() {
-                canvas.removeEventListener('mousemove', onPaint, false);
-            }, false);
-            
-            var onPaint = function() {
-                ctx.beginPath();
-                ctx.moveTo(last_mouse.x, last_mouse.y);
-                ctx.lineTo(mouse.x, mouse.y);
-                ctx.closePath();
-                ctx.stroke();
-            };
-                
+        if(settings.nextShape === 'pen') {
+            shape = new Pen(x, y, settings.nextColor);
         }
-        
-        else if(shape === 'line'){
-            
+        else if(settings.nextShape === 'rectangle') {
+            shape = new Rectangle(x, y, color, settings.isDrawing);
         }
-
-        else if(shape === 'circle'){
+        else if(settings.nextShape === 'line') {
+            shape = new Line()
+        }
+        else if(settings.nextShape === 'circle') {
+            shape = new Circle(x, y, settings.nextColor);
+        }
+        else if(settings.nextShape === 'text') {
 
         }
+        
+        shape.draw(ctx);
+
+        // if(settings.nextShape === 'pen'){
+        //     x.draw();
+        //     var mouse = {x: 0, y: 0};
+	    //     var last_mouse = {x: 0, y: 0};
+	
+        //     /* Mouse Capturing Work */
+        //     settings.canvas.addEventListener('mousemove', function(e) {
+        //         last_mouse.x = mouse.x;
+        //         last_mouse.y = mouse.y;
+                
+        //         mouse.x = e.pageX - this.offsetLeft;
+        //         mouse.y = e.pageY - this.offsetTop;
+        //     }, false);
+	
+	
+        //     /* Drawing on Paint App */
+        //     ctx.lineWidth = 1;
+        //     ctx.lineJoin = 'round';
+        //     ctx.lineCap = 'round';
+        //     ctx.strokeStyle = '#'+settings.color;
+        //     settings.canvas.style.cursor = "crosshair";
+            
+        //     settings.canvas.addEventListener('mousedown', function(e) {
+        //         settings.canvas.addEventListener('mousemove', onPaint, false);
+        //     }, false);
+            
+        //     settings.canvas.addEventListener('mouseup', function() {
+        //         settings.canvas.removeEventListener('mousemove', onPaint, false);
+        //     }, false);
+            
+        //     var onPaint = function() {
+        //         ctx.beginPath();
+        //         ctx.moveTo(last_mouse.x, last_mouse.y);
+        //         ctx.lineTo(mouse.x, mouse.y);
+        //         ctx.closePath();
+        //         ctx.stroke();
+        //     };     
+        // }
+        // else if(shape === 'line') {    
+                
+        // }
+        // else if(shape === 'circle') {
+
+        // }
+        
+
 
     });
 
     $('#myCanvas').mouseup(function(e){
         var x = e.pageX;
         var y = e.pageY;
+        
+        
     });
 
     
