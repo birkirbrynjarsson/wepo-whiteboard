@@ -52,36 +52,38 @@ $(document).ready(function(){
         settings.thickness = $('#thickness').val();
         settings.nextShape = $('input[name="shape"]:checked').val();
         settings.nextColor = $('.jscolor').val();
-        console.log(settings.thickness);
         var x = e.pageX;
         var y = e.pageY;
 
         var shape;
         
         if(settings.nextShape === 'pen') {
-            shape = new Pen(x, y, settings.nextColor);
+            shape = new Pen(x, y, settings.nextColor, settings.thickness);
         }
         else if(settings.nextShape === 'rectangle') {
-            shape = new Rectangle(x, y, settings.nextColor);
+            shape = new Rectangle(x, y, settings.nextColor, settings.thickness);
         }
         else if(settings.nextShape === 'line') {
             shape = new Line()
         }
         else if(settings.nextShape === 'circle') {
-            shape = new Circle(x, y, settings.nextColor);
+            shape = new Circle(x, y, settings.nextColor, settings.thickness);
         }
         else if(settings.nextShape === 'text') {
 
         }
 
-        $('#myCanvas').mousemove(function(e){
-            shape.endPoints(e.pageX, e.pageY);
-        });
+
+        shape.draw(ctx);
+        // $('#myCanvas').mousemove(function(e){
+        //     shape.endPoints(e.pageX, e.pageY);
+
+        // });
         
         
 
         // if(settings.nextShape === 'pen'){
-        //     x.draw();
+
         //     var mouse = {x: 0, y: 0};
 	    //     var last_mouse = {x: 0, y: 0};
 	
@@ -96,7 +98,7 @@ $(document).ready(function(){
 	
 	
         //     /* Drawing on Paint App */
-        //     ctx.lineWidth = 1;
+        //     ctx.lineWidth = settings.thickness;
         //     ctx.lineJoin = 'round';
         //     ctx.lineCap = 'round';
         //     ctx.strokeStyle = '#'+settings.color;
@@ -117,12 +119,6 @@ $(document).ready(function(){
         //         ctx.closePath();
         //         ctx.stroke();
         //     };     
-        // }
-        // else if(shape === 'line') {    
-                
-        // }
-        // else if(shape === 'circle') {
-
         // }
         
 
