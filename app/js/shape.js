@@ -55,10 +55,8 @@ class Circle extends Shape {
         context.beginPath( );
         context.arc( this.startX, this.startY, 70, 0, 2 * Math.PI, false );
         // check out the parameters here
-        context.fillStyle = "#"+this.color;
-        context.fill( );
+        context.strokeStyle = "#"+this.color;
         context.lineWidth = 5;
-        context.strokeStyle = "black";
         context.stroke( );
         console.log(this.color);
     }
