@@ -123,36 +123,26 @@ body {
     float: right;
 }
 
-#fontDiv > p{
+#fontPicker > p {
+    color: lightgray;
+    float: left;
     margin-left: 20px;
+}
+
+#fontSize > p {
     color: lightgray;
-    text-align: left;
     float: left;
+    clear: both;
+    margin-left: 20px;
 }
 
-#fontdiv {
-    
-}
-
-#fontPicker {
+#fontP {
     width: 60%;
-    height: 23px;
-    margin-left: 10px;
-    margin-right: auto;
-    float: left;
+    height: 20px;
 }
 
-#fontSizeDiv > p {
-    margin-left: 0px;
-    color: lightgray;
-    text-align: left;
-    float: left; 
-}
-
-#fontSize{
+#fontS {
+    margin-top: 10px;
     width: 60%;
-    height: 23px;
-    margin-left: 10px;
-    margin-right: auto;
-    float: left;
+    height: 20px;
 }
