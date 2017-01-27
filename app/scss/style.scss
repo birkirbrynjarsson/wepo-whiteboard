@@ -127,6 +127,7 @@ body {
     color: lightgray;
     float: left;
     margin-left: 20px;
+    padding-top: 5px;
 }
 
 #fontSize > p {
@@ -134,17 +135,18 @@ body {
     float: left;
     clear: both;
     margin-left: 20px;
+    padding-top: 8px;
 }
 
 #fontP {
     width: 60%;
-    height: 20px;
+    height: 30px;
 }
 
 #fontS {
     margin-top: 10px;
     width: 60%;
-    height: 20px;
+    height: 30px;
 }
 
 #saveBtn {
