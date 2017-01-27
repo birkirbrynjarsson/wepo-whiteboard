@@ -51,8 +51,6 @@ $(document).ready(function(){
         
         settings.nextShape = $('input[name="shape"]:checked').val();
         settings.nextColor = $('.jscolor').val();
-        var color = settings.nextColor;
-        console.log(settings.nextColor);
         var x = e.pageX;
         var y = e.pageY;
         
@@ -60,7 +58,7 @@ $(document).ready(function(){
             shape = new Pen(x, y, settings.nextColor);
         }
         else if(settings.nextShape === 'rectangle') {
-            shape = new Rectangle(x, y, color, settings.isDrawing);
+            shape = new Rectangle(x, y, settings.nextColor);
         }
         else if(settings.nextShape === 'line') {
             shape = new Line()

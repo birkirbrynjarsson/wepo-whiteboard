@@ -1,10 +1,10 @@
 class Shape {
-    constructor(startX, startY, endX, endY, col, width) {
+    constructor(startX, startY, endX, endY, color, width) {
         this.startX = startX;
         this.startY = startY;
         this.endX = endX;
         this.endY = endY;
-        this.col = col;
+        this.color = color;
         this.width = width;
     }
 /*    doStuff() {
@@ -27,8 +27,8 @@ class Pen extends Shape {
 }
 
 class Rectangle extends Shape {
-    constructor(startX, startY, col, drawing) {
-        super(startX, startY, col, drawing);
+    constructor(startX, startY, color) {
+        super(startX, startY, undefined, undefined, color);
     }
     
     doStuff() {
@@ -36,16 +36,15 @@ class Rectangle extends Shape {
     }
 
     draw(context) {
-        context.fillStyle = '#'+this.col;
+        context.strokeStyle = '#'+this.color;
         context.strokeRect(this.startX, this.startY, 50, 50);
         //console.log('x: ' + this.startX, 'y: ' + this.startY);
-        console.log(this.col);
     }
 }
 
 class Circle extends Shape {
     constructor(startX, startY, color) {
-        super(startX, startY, color);
+        super(startX, startY, undefined, undefined, color);
     }
 
     doStuff() {
