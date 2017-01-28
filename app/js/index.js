@@ -17,6 +17,8 @@ function init(){
     canvas.height = screen.height;
     
     layers = new Array();
+    undo = new Array();
+    redo = new Array();
 
     // Initialize Toolbar
     loadToolbar();
@@ -55,12 +57,33 @@ function loadToolbar() {
     toolbar.lineWidth = $('#lineWidth').val();
 }
 
+function undoAction(){
+    if(undo.length > 0){
+        redo.push(undo.pop());
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        undo.forEach(function(x){
+            x.draw(context);
+        });
+    }
+
+}
+
+function redoAction(){
+    if(redo.length > 0){
+        undo.push(redo.pop());
+        context.clearRect(0, 0, canvas.width, canvas.height);  
+        undo.forEach(function(x){
+            x.draw(context);
+        });
+    }
+}
+
 function mouseDown(event){
     mouseIsDown = true;
     loadToolbar();
     var pos = getMousePos(dummyCanvas, event);
     
-    console.log(toolbar);
+    //console.log(toolbar);
     if(toolbar.shape === 'pen') {
         shape = new Pen(pos.x, pos.y, toolbar.color);
     }
@@ -77,7 +100,6 @@ function mouseDown(event){
 
     }
     // dummyContext.clearRect(0, 0, canvas.width, canvas.height);
-    console.log(shape);
     shape.draw(dummyContext);
 }
 
@@ -97,6 +119,8 @@ function mouseUp(event){
         shape.endPoints(pos.x, pos.y);
         dummyContext.clearRect(0, 0, canvas.width, canvas.height);
         shape.draw(context);
+        undo.push(shape);
+        redo = [];
         
     }
 }
@@ -110,9 +134,16 @@ $(document).ready(function(){
     dummyCanvas.addEventListener('mousemove', mouseMove);
     dummyCanvas.addEventListener('mouseup', mouseUp);
 
-
     $('#toolbar').click(function(){
         loadToolbar();
+    });
+
+    $('#undoBtn').click(function(){
+        undoAction();
+    });
+
+    $('#redoBtn').click(function(){
+        redoAction();
     });
 
     $('#myCanvas').mousedown(function(e){
