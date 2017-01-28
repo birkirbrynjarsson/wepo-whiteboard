@@ -116,3 +116,17 @@ class Text extends Shape {
         this.font = font;
     }
 }
+
+class Line extends Shape {
+    constructor(startX, startY, endX, endY, color, lineWidth) {
+        super(startX, startY, endX, endY, color, lineWidth);
+    }
+    draw(context) {
+        context.beginPath();
+        context.moveTo(this.startX, this.startY);
+        context.lineTo(this.endX, this.endY)
+        context.lineWidth = this.lineWidth;
+        context.strokeStyle = "#"+this.color;
+        context.stroke(); 
+    }
+}
