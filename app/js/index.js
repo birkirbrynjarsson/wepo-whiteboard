@@ -65,13 +65,13 @@ function mouseDown(event){
         shape = new Pen(pos.x, pos.y, toolbar.color);
     }
     else if(toolbar.shape === 'rectangle') {
-        shape = new Rectangle(pos.x, pos.y, pos.x, pos.y, toolbar.color);
+        shape = new Rectangle(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
     }
     else if(toolbar.shape === 'line') {
         shape = new Line();
     }
     else if(toolbar.shape === 'circle') {
-        shape = new Circle(pos.x, pos.y, toolbar.color);
+        shape = new Circle(pos.x, pos.y, toolbar.color, toolbar.lineWidth);
     }
     else if(toolbar.shape === 'text') {
 
@@ -97,6 +97,7 @@ function mouseUp(event){
         shape.endPoints(pos.x, pos.y);
         dummyContext.clearRect(0, 0, canvas.width, canvas.height);
         shape.draw(context);
+        
     }
 }
 

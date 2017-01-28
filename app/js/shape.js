@@ -1,11 +1,11 @@
 class Shape {
-    constructor(startX, startY, endX, endY, color, width) {
+    constructor(startX, startY, endX, endY, color, lineWidth) {
         this.startX = startX;
         this.startY = startY;
         this.endX = endX;
         this.endY = endY;
         this.color = color;
-        this.width = width;
+        this.lineWidth = lineWidth;
     }
     endPoints(x, y){
         this.endX = x;
@@ -14,8 +14,8 @@ class Shape {
 }
 
 class Pen extends Shape {
-    constructor(startX, startY, color, width) {
-        super(startX, startY, startX, startY, color, width);
+    constructor(startX, startY, color, lineWidth) {
+        super(startX, startY, startX, startY, color, lineWidth);
     }
 
     draw(context) {
@@ -59,8 +59,8 @@ class Pen extends Shape {
 }
 
 class Rectangle extends Shape {
-    constructor(startX, startY, endX, endY, color) {
-        super(startX, startY, endX, endY, color);
+    constructor(startX, startY, endX, endY, color, lineWidth) {
+        super(startX, startY, endX, endY, color, lineWidth);
         this.w = this.endX - this.startX;
         this.h = this.endY - this.startY;
         this.offsetX = (this.w < 0) ? this.w : 0;
@@ -81,13 +81,13 @@ class Rectangle extends Shape {
     
     draw(context) {              
         context.beginPath();
-        // context.rect(this.startX + this.offsetX, this.startY + this.offsetY, this.width, this.height);
+        
         // context.fillStyle = this.color;
         // context.fill();
-        // context.lineWidth = this.lineWidth;
+        context.lineWidth = this.lineWidth;
         // context.strokeStyle = this.color;
         // context.stroke();
-        // context.strokeStyle = '#'+this.color;
+        context.strokeStyle = '#'+this.color;
         context.strokeRect(this.startX + this.offsetX, this.startY + this.offsetY, this.width, this.height);
     }
 }
