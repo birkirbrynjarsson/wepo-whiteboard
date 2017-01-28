@@ -87,7 +87,7 @@ function mouseDown(event){
         shape = new Pen(pos.x, pos.y, toolbar.color);
     }
     else if(toolbar.shape === 'rectangle') {
-        shape = new Rectangle(pos.x, pos.y, pos.x, pos.y, toolbar.color);
+        shape = new Rectangle(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
     }
     else if(toolbar.shape === 'line') {
         shape = new Line(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);

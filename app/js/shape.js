@@ -124,7 +124,7 @@ class Circle extends Shape {
                            this.centerY + this.radiusY * Math.sin(this.a));
         }
         context.closePath();
-        // context.lineWidth = this.lineWidth;
+        context.lineWidth = this.lineWidth;
         context.strokeStyle = "#"+this.color;
         context.stroke();
     }
