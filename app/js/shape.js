@@ -100,7 +100,6 @@ class Circle extends Shape {
         this.centerX = this.startX + this.radiusX;
         this.centerY = this.startY + this.radiusY;
         this.step = 0.01;
-        this.a = this.step;
         this.pi2 = Math.PI * 2 - this.step;
     }
 
@@ -111,7 +110,6 @@ class Circle extends Shape {
         this.centerX = this.startX + this.radiusX;
         this.centerY = this.startY + this.radiusY;
         this.step = 0.01;
-        this.a = this.step;
         this.pi2 = Math.PI * 2 - this.step;
     }
 
@@ -119,9 +117,9 @@ class Circle extends Shape {
         context.beginPath();
         context.moveTo(this.centerX + this.radiusX * Math.cos(0),
                        this.centerY + this.radiusY * Math.sin(0));
-        for(; this.a < this.pi2; this.a += this.step) {
-            context.lineTo(this.centerX + this.radiusX * Math.cos(this.a),
-                           this.centerY + this.radiusY * Math.sin(this.a));
+        for(var a = this.step; a < this.pi2; a += this.step) {
+            context.lineTo(this.centerX + this.radiusX * Math.cos(a),
+                           this.centerY + this.radiusY * Math.sin(a));
         }
         context.closePath();
         context.lineWidth = this.lineWidth;
