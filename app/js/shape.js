@@ -29,11 +29,11 @@ class Pen extends Shape {
         this.points.push([x,y]);
     }
 
-    draw(context, reset) {
+    draw(context, mouseIsDown) {
         context.strokeStyle = '#'+this.color;
         context.lineJoin = 'round';
         context.lineWidth = this.lineWidth;
-        if(reset){
+        if(!mouseIsDown){
             this.i = 0;
         }
         for(; this.i < this.points.length; this.i++) {

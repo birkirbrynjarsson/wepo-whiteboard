@@ -99,7 +99,7 @@ function mouseDown(event){
 
     }
     // dummyContext.clearRect(0, 0, canvas.width, canvas.height);
-    shape.draw(dummyContext, false);
+    shape.draw(dummyContext, mouseIsDown);
 }
 
 function mouseMove(event){
@@ -109,7 +109,7 @@ function mouseMove(event){
         if(toolbar.shape !== 'pen'){
             dummyContext.clearRect(0, 0, dummyCanvas.width, dummyCanvas.height);
         }
-        shape.draw(dummyContext, false);
+        shape.draw(dummyContext, mouseIsDown);
     }
 }
 
@@ -119,7 +119,7 @@ function mouseUp(event){
         var pos = getMousePos(canvas, event);
         shape.endPoints(pos.x, pos.y);
         dummyContext.clearRect(0, 0, canvas.width, canvas.height);
-        shape.draw(context, true);
+        shape.draw(context, mouseIsDown);
         undo.push(shape);
         redo = [];
         
