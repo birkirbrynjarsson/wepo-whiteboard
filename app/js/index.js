@@ -82,12 +82,7 @@ function mouseDown(event){
     mouseIsDown = true;
     loadToolbar();
     var pos = getMousePos(dummyCanvas, event);
-<<<<<<< HEAD
-    
-    //console.log(toolbar);
-=======
 
->>>>>>> 88dd6b61ec1a833835011cc60fa83442757342f6
     if(toolbar.shape === 'pen') {
         shape = new Pen(pos.x, pos.y, toolbar.color);
     }
