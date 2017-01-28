@@ -11,50 +11,42 @@ class Shape {
         this.endX = x;
         this.endY = y;
     }
+    draw(context, reset){
+        // nada
+    }
 }
 
 class Pen extends Shape {
-    constructor(startX, startY, color, lineWidth) {
-        super(startX, startY, startX, startY, color, lineWidth);
+    constructor(startX, startY, color, lineWidth, drawing) {
+        super(startX, startY, undefined, undefined, color, lineWidth);
+        this.points = new Array();
+        this.points.push([startX,startY]);
+        this.i = 0;
+        this.drawing = drawing; // Boolean, are we painters or are we dancers
     }
 
-    draw(context) {
-            // var mouse = {x: 0, y: 0};
-	        // var last_mouse = {x: 0, y: 0};
-	
-            // /* Mouse Capturing Work */
-            // //settings.canvas.addEventListener('mousemove', function(e) {
-            // $('#myCanvas').mousemove(function(e) {
-            //     last_mouse.x = mouse.x;
-            //     last_mouse.y = mouse.y;
-                
-            //     mouse.x = e.pageX - this.offsetLeft;
-            //     mouse.y = e.pageY - this.offsetTop;
-            // }, false);
-	
-	
-            // /* Drawing on Paint App */
-            // context.lineWidth = this.width;
-            // context.lineJoin = 'round';
-            // context.lineCap = 'round';
-            // context.strokeStyle = '#'+this.color;
-            // // settings.canvas.style.cursor = "crosshair";
-            
-            // settings.canvas.addEventListener('mousedown', function(e) {
-            //     settings.canvas.addEventListener('mousemove', onPaint, false);
-            // }, false);
-            
-            // settings.canvas.addEventListener('mouseup', function() {
-            //     settings.canvas.removeEventListener('mousemove', onPaint, false);
-            // }, false);
-            
-            // var onPaint = function() {
-            //     ctx.beginPath();
-            //     ctx.moveTo(last_mouse.x, last_mouse.y);
-            //     ctx.lineTo(mouse.x, mouse.y);
-            //     ctx.closePath();
-            //     ctx.stroke();
-            // };     
+    endPoints(x, y) {
+        this.points.push([x,y]);
+    }
+
+    draw(context, reset) {
+        context.strokeStyle = '#'+this.color;
+        context.lineJoin = 'round';
+        context.lineWidth = this.lineWidth;
+        if(reset){
+            this.i = 0;
+        }
+        for(; this.i < this.points.length; this.i++) {
+            context.beginPath();
+            if(this.points[this.i] && this.i){
+                context.moveTo(this.points[this.i-1][0], this.points[this.i-1][1]); // Move back 1 point
+            }else{
+                context.moveTo(this.points[this.i][0], this.points[this.i][1]); // First point
+            }	
+            context.lineTo(this.points[this.i][0], this.points[this.i][1]);
+            context.closePath();
+            context.stroke();
+        }
     }       
 }
 

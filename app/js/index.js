@@ -62,7 +62,7 @@ function undoAction(){
         redo.push(undo.pop());
         context.clearRect(0, 0, canvas.width, canvas.height);
         undo.forEach(function(x){
-            x.draw(context);
+            x.draw(context, true);
         });
     }
 
@@ -73,7 +73,7 @@ function redoAction(){
         undo.push(redo.pop());
         context.clearRect(0, 0, canvas.width, canvas.height);  
         undo.forEach(function(x){
-            x.draw(context);
+            x.draw(context, true);
         });
     }
 }
@@ -84,7 +84,7 @@ function mouseDown(event){
     var pos = getMousePos(dummyCanvas, event);
 
     if(toolbar.shape === 'pen') {
-        shape = new Pen(pos.x, pos.y, toolbar.color);
+        shape = new Pen(pos.x, pos.y, toolbar.color, toolbar.lineWidth);
     }
     else if(toolbar.shape === 'rectangle') {
         shape = new Rectangle(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
@@ -99,15 +99,17 @@ function mouseDown(event){
 
     }
     // dummyContext.clearRect(0, 0, canvas.width, canvas.height);
-    shape.draw(dummyContext);
+    shape.draw(dummyContext, false);
 }
 
 function mouseMove(event){
     if (mouseIsDown) {
         var pos = getMousePos(dummyCanvas, event);
         shape.endPoints(pos.x, pos.y);
-        dummyContext.clearRect(0, 0, dummyCanvas.width, dummyCanvas.height);
-        shape.draw(dummyContext);
+        if(toolbar.shape !== 'pen'){
+            dummyContext.clearRect(0, 0, dummyCanvas.width, dummyCanvas.height);
+        }
+        shape.draw(dummyContext, false);
     }
 }
 
@@ -117,7 +119,7 @@ function mouseUp(event){
         var pos = getMousePos(canvas, event);
         shape.endPoints(pos.x, pos.y);
         dummyContext.clearRect(0, 0, canvas.width, canvas.height);
-        shape.draw(context);
+        shape.draw(context, true);
         undo.push(shape);
         redo = [];
         
