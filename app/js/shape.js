@@ -11,7 +11,7 @@ class Shape {
         this.endX = x;
         this.endY = y;
     }
-    draw(context, reset){
+    draw(context, mouseIdDown){
         // nada
     }
 }

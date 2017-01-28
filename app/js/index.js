@@ -62,7 +62,7 @@ function undoAction(){
         redo.push(undo.pop());
         context.clearRect(0, 0, canvas.width, canvas.height);
         undo.forEach(function(x){
-            x.draw(context, true);
+            x.draw(context, mouseIsDown);
         });
     }
 
@@ -73,7 +73,7 @@ function redoAction(){
         undo.push(redo.pop());
         context.clearRect(0, 0, canvas.width, canvas.height);  
         undo.forEach(function(x){
-            x.draw(context, true);
+            x.draw(context, mouseIsDown);
         });
     }
 }
