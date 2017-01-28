@@ -1,58 +1,123 @@
-var settings = {
-    canvas: document.getElementById('myCanvas'),
-    nextShape:  "pen",
-    nextColor:  000000,
-    nextFont:   'Arial',
-    fontSize:   12,
-    thickness:  1,
-    startX:     0,
-    startY:     0,
-    endX:       0,
-    endY:       0,
-    isDrawing: false,
+var canvas, dummyCanvas, context, dummyContext, toolbar, layers;
+var shape;
+var mouseIsDown = false;
+
+function init(){
+    // Initialize Canvas
+    dummyCanvas = document.getElementById('dummyCanvas');
+    dummyContext = dummyCanvas.getContext('2d');
+    dummyCanvas.height = screen.height;
+    dummyCanvas.width = screen.width;
+    dummyCanvas.style.cursor = 'crosshair';
+
+    canvas = document.getElementById('myCanvas');
+    context = canvas.getContext('2d');
+    canvas.style.cursor = 'crosshair';
+    canvas.width = screen.width;
+    canvas.height = screen.height;
+    
+    layers = new Array();
+
+    // Initialize Toolbar
+    loadToolbar();
+
+    // RangeSlider
+    var rangeSlider = function(){
+        var slider = $('.range-slider'),
+        range = $('.range-slider__range'),
+        value = $('.range-slider__value');
+        slider.each(function(){
+            value.each(function(){
+                var value = $(this).prev().attr('value');
+                $(this).html(value);
+            });
+            range.on('input', function(){
+                $(this).next(value).html(this.value);
+            });
+        });
+    };
+    rangeSlider();
 }
 
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
+    };
+}
 
-// settings.nextShape = $('input[name="shape"]:checked').val();
-// settings.nextColor = $('.jscolor').val();
+function loadToolbar() {
+    toolbar.shape = $('input[name="shape"]:checked').val();
+    toolbar.color = $('.jscolor').val();
+    toolbar.font = $('#fontP').val();
+    toolbar.fontSize = $('#fontS').val();
+    toolbar.lineWidth = $('#lineWidth').val();
+}
 
-var ctx = settings.canvas.getContext('2d');
-settings.canvas.style.cursor = "crosshair";
-settings.canvas.width = screen.width;
-settings.canvas.height = screen.height;
+function mouseDown(event){
+    mouseIsDown = true;
+    loadToolbar();
+    var pos = getMousePos(dummyCanvas, event);
+    
+    console.log(toolbar);
+    if(toolbar.shape === 'pen') {
+        shape = new Pen(pos.x, pos.y, toolbar.color);
+    }
+    else if(toolbar.shape === 'rectangle') {
+        shape = new Rectangle(pos.x, pos.y, pos.x, pos.y, toolbar.color);
+    }
+    else if(toolbar.shape === 'line') {
+        shape = new Line();
+    }
+    else if(toolbar.shape === 'circle') {
+        shape = new Circle(pos.x, pos.y, toolbar.color);
+    }
+    else if(toolbar.shape === 'text') {
 
+    }
+    // dummyContext.clearRect(0, 0, canvas.width, canvas.height);
+    console.log(shape);
+    shape.draw(dummyContext);
+}
+
+function mouseMove(event){
+    if (mouseIsDown) {
+        var pos = getMousePos(dummyCanvas, event);
+        shape.endPoints(pos.x, pos.y);
+        dummyContext.clearRect(0, 0, dummyCanvas.width, dummyCanvas.height);
+        shape.draw(dummyContext);
+    }
+}
+
+function mouseUp(event){
+    if (mouseIsDown) {
+        mouseIsDown = false;
+        var pos = getMousePos(canvas, event);
+        shape.endPoints(pos.x, pos.y);
+        dummyContext.clearRect(0, 0, canvas.width, canvas.height);
+        shape.draw(context);
+    }
+}
 
 $(document).ready(function(){
 
-      //thickness range Slider 
-    var rangeSlider = function(){
-      var slider = $('.range-slider'),
-      range = $('.range-slider__range'),
-      value = $('.range-slider__value');
-      slider.each(function(){
-          value.each(function(){
-              var value = $(this).prev().attr('value');
-              $(this).html(value);
-          });
-          range.on('input', function(){
-              $(this).next(value).html(this.value);
-          });
-      });
-    };
+    init();
 
-    rangeSlider();
+    // Listeners
+    dummyCanvas.addEventListener('mousedown', mouseDown);
+    dummyCanvas.addEventListener('mousemove', mouseMove);
+    dummyCanvas.addEventListener('mouseup', mouseUp);
 
-    
-    $('#toolbar').mousedown(function(){
-        settings.nextColor = $('.jscolor').val();
+
+    $('#toolbar').click(function(){
+        loadToolbar();
+    });
+    $('#myCanvas').mousedown(function(e){
+        
     });
 
     $('#myCanvas').mousedown(function(e){
-        
-        settings.thickness = $('#thickness').val();
-        settings.nextShape = $('input[name="shape"]:checked').val();
-        settings.nextColor = $('.jscolor').val();
-        console.log(settings.thickness);
         var x = e.pageX;
         var y = e.pageY;
 

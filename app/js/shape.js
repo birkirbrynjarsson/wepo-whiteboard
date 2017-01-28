@@ -7,24 +7,15 @@ class Shape {
         this.color = color;
         this.width = width;
     }
-
     endPoints(x, y){
         this.endX = x;
         this.endY = y;
     }
-
-/*    doStuff() {
-        //
-    }*/
 }
 
 class Pen extends Shape {
     constructor(startX, startY, color) {
         super(startX, startY, color);
-    }
-
-    doStuff() {
-        super.doStuff();
     }
 
     draw(context) {
@@ -33,29 +24,42 @@ class Pen extends Shape {
 }
 
 class Rectangle extends Shape {
-    constructor(startX, startY, color) {
-        super(startX, startY, startX, startY, color);
+    constructor(startX, startY, endX, endY, color) {
+        super(startX, startY, endX, endY, color);
+        this.w = this.endX - this.startX;
+        this.h = this.endY - this.startY;
+        this.offsetX = (this.w < 0) ? this.w : 0;
+        this.offsetY = (this.h < 0) ? this.h : 0;
+        this.width = Math.abs(this.w);
+        this.height = Math.abs(this.h);
+    }
+
+    endPoints(x, y) {
+        super.endPoints(x, y);
+        this.w = this.endX - this.startX;
+        this.h = this.endY - this.startY;
+        this.offsetX = (this.w < 0) ? this.w : 0;
+        this.offsetY = (this.h < 0) ? this.h : 0;
+        this.width = Math.abs(this.w);
+        this.height = Math.abs(this.h);
     }
     
-
-
-    doStuff() {
-        super.doStuff();
-    }
-
-    draw(context) {
-        context.strokeStyle = '#'+this.color;
-        context.strokeRect(this.startX, this.startY, this.endX, this.endY);
+    draw(context) {              
+        context.beginPath();
+        // context.rect(this.startX + this.offsetX, this.startY + this.offsetY, this.width, this.height);
+        // context.fillStyle = this.color;
+        // context.fill();
+        // context.lineWidth = this.lineWidth;
+        // context.strokeStyle = this.color;
+        // context.stroke();
+        // context.strokeStyle = '#'+this.color;
+        context.strokeRect(this.startX + this.offsetX, this.startY + this.offsetY, this.width, this.height);
     }
 }
 
 class Circle extends Shape {
     constructor(startX, startY, color) {
         super(startX, startY, startX, startY, color);
-    }
-
-    doStuff() {
-        super.doStuff();
     }
 
     draw(context) {
