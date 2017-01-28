@@ -93,18 +93,40 @@ class Rectangle extends Shape {
 }
 
 class Circle extends Shape {
-    constructor(startX, startY, color, width) {
-        super(startX, startY, startX, startY, color, width);
+    constructor(startX, startY, endX, endY, color, lineWidth) {
+        super(startX, startY, endX, endY, color, lineWidth);
+        this.radiusX = (this.endX - this.startX) * 0.5;
+        this.radiusY = (this.endY - this.startY) * 0.5;
+        this.centerX = this.startX + this.radiusX;
+        this.centerY = this.startY + this.radiusY;
+        this.step = 0.01;
+        this.a = this.step;
+        this.pi2 = Math.PI * 2 - this.step;
+    }
+
+    endPoints(x, y) {
+        super.endPoints(x,y);
+        this.radiusX = (this.endX - this.startX) * 0.5;
+        this.radiusY = (this.endY - this.startY) * 0.5;
+        this.centerX = this.startX + this.radiusX;
+        this.centerY = this.startY + this.radiusY;
+        this.step = 0.01;
+        this.a = this.step;
+        this.pi2 = Math.PI * 2 - this.step;
     }
 
     draw(context) {
-        context.beginPath( );
-        context.arc( this.startX, this.startY, 70, 0, 2 * Math.PI, false );
-        // check out the parameters here
+        context.beginPath();
+        context.moveTo(this.centerX + this.radiusX * Math.cos(0),
+                       this.centerY + this.radiusY * Math.sin(0));
+        for(; this.a < this.pi2; this.a += this.step) {
+            context.lineTo(this.centerX + this.radiusX * Math.cos(this.a),
+                           this.centerY + this.radiusY * Math.sin(this.a));
+        }
+        context.closePath();
+        // context.lineWidth = this.lineWidth;
         context.strokeStyle = "#"+this.color;
-        context.lineWidth = this.width;
-        context.stroke( );
-        console.log(this.color);
+        context.stroke();
     }
 }
 

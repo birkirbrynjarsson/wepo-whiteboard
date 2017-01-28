@@ -93,7 +93,7 @@ function mouseDown(event){
         shape = new Line(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
     }
     else if(toolbar.shape === 'circle') {
-        shape = new Circle(pos.x, pos.y, toolbar.color);
+        shape = new Circle(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
     }
     else if(toolbar.shape === 'text') {
 
