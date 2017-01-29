@@ -6,7 +6,6 @@ body {
 #myCanvas {
     width: auto;
     display: block;
-    //position: absolute; z-index: 1;
 }
 
 .container {
@@ -66,24 +65,6 @@ body {
     padding: 6px 23px;
 }
 
-/*#text{
-    float: left;    
-    display: none;
-}
-
-#textButton > label {
-    align-self: left;
-    text-align: left;
-}
-
-#textButton > label > span {
-   margin: 1px;
-}
-#txtBtn {
-    width: 85%;
-    margin-bottom: 20px;
-}*/
-
 #textProperty {
     margin-left: 0px;
     margin-right: 5px;
@@ -99,14 +80,6 @@ body {
     align-content: right;
     height: 38px;
 }
-
-/*#colorP {
-    height:10px;
-    width: 80%;
-    text-align: right;
-    align-content: right;
-}*/
-
 
 #colorPicker {
     width: 80px;
@@ -141,14 +114,6 @@ body {
     text-align: left;
 }
 
-/*#ex1Slider .slider-selection {
-	background: #BABABA;
-}
-*/
-/*.range-slider__range {
-    width: 80%;
-}
-*/
 #undoButtons {
     margin-top: 10px;
     width: 80%;
@@ -233,7 +198,6 @@ body {
 #saveBtn, #loadBtn {
     width: 80%;
     align-self: center;
-    //text-align: left;
     margin-top: 1px;
 }
 
@@ -248,6 +212,5 @@ body {
 #txt {
     resize: none;
     padding: 5px 5px;
-    //margin: 8px 0;
-  //  box-sizing: border-box;
+
 }
