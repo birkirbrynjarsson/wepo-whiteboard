@@ -7,13 +7,16 @@ class Shape {
         this.color = color;
         this.lineWidth = lineWidth;
     }
+    
     endPoints(x, y) {
         this.endX = x;
         this.endY = y;
     }
+
     draw(context, mouseIsDown) {
         // nana
     }
+
     moveTo(x, y) {
         var xDiff = x - this.startX;
         var yDiff = y - this.startY;
@@ -22,12 +25,12 @@ class Shape {
         this.startY += yDiff;
         this.endY += yDiff;
     }
+
     isWithin(x, y){
         var lX = this.endX > this.startX ? this.startX : this.endX;
         var hX = this.endX > this.startX ? this.endX : this.startX;
         var lY = this.endY > this.startY ? this.startY : this.endY;
         var hY = this.endY > this.startY ? this.endY : this.startY;
-
         if(lX <= x && x <= hX && lY <= y && y <= hY){
             return true;
         }

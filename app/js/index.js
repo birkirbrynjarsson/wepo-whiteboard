@@ -3,7 +3,7 @@ var shape;
 var selection = false;
 var mouseIsDown = false;
 
-function init(){
+function init() {
     // Initialize Canvas
     dummyCanvas = document.getElementById('dummyCanvas');
     dummyContext = dummyCanvas.getContext('2d');
@@ -16,7 +16,7 @@ function init(){
     canvas.style.cursor = 'crosshair';
     canvas.width = screen.width;
     canvas.height = screen.height;
-    
+
     undo = new Array();
     redo = new Array();
 
@@ -24,16 +24,16 @@ function init(){
     loadToolbar();
 
     // RangeSlider
-    var rangeSlider = function(){
+    var rangeSlider = function() {
         var slider = $('.range-slider'),
-        range = $('.range-slider__range'),
-        value = $('.range-slider__value');
-        slider.each(function(){
-            value.each(function(){
+            range = $('.range-slider__range'),
+            value = $('.range-slider__value');
+        slider.each(function() {
+            value.each(function() {
                 var value = $(this).prev().attr('value');
                 $(this).html(value);
             });
-            range.on('input', function(){
+            range.on('input', function() {
                 $(this).next(value).html(this.value);
             });
         });
@@ -56,109 +56,102 @@ function loadToolbar() {
     toolbar.fontSize = $('#fontS').val();
     toolbar.lineWidth = $('#lineWidth').val();
     toolbar.text = $('#txt').val();
-    
+
 }
 
-function undoAction(){
-    if(undo.length > 0){
+function undoAction() {
+    if (undo.length > 0) {
         redo.push(undo.pop());
         context.clearRect(0, 0, canvas.width, canvas.height);
-        undo.forEach(function(x){
+        undo.forEach(function(x) {
             x.draw(context, mouseIsDown);
         });
     }
 
 }
 
-function redoAction(){
-    if(redo.length > 0){
+function redoAction() {
+    if (redo.length > 0) {
         undo.push(redo.pop());
-        context.clearRect(0, 0, canvas.width, canvas.height);  
-        undo.forEach(function(x){
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        undo.forEach(function(x) {
             x.draw(context, mouseIsDown);
         });
     }
 }
 
-function reDraw(context){
+function reDraw(context) {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    undo.forEach(function(x){
+    undo.forEach(function(x) {
         x.draw(context, false);
     });
 }
 
-function clearCanvas(){
+function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     undo = [];
     redo = [];
 }
 
-function mouseDown(event){
+function mouseDown(event) {
     mouseIsDown = true;
     loadToolbar();
     var pos = getMousePos(dummyCanvas, event);
 
-    if(toolbar.shape === 'pen') {
+    if (toolbar.shape === 'pen') {
         shape = new Pen(pos.x, pos.y, toolbar.color, toolbar.lineWidth);
-    }
-    else if(toolbar.shape === 'rectangle') {
+    } else if (toolbar.shape === 'rectangle') {
         shape = new Rectangle(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
-    }
-    else if(toolbar.shape === 'line') {
+    } else if (toolbar.shape === 'line') {
         shape = new Line(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
-    }
-    else if(toolbar.shape === 'circle') {
+    } else if (toolbar.shape === 'circle') {
         shape = new Circle(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
-    }
-    else if(toolbar.shape === 'text') {
+    } else if (toolbar.shape === 'text') {
         shape = new Text(pos.x, pos.y, toolbar.color, toolbar.font, toolbar.fontSize, toolbar.text);
-    }
-    else if(toolbar.shape === 'select'){
+    } else if (toolbar.shape === 'select') {
         selection = true;
         shape = null;
-        for(var i = undo.length-1; i >= 0; i--){
+        for (var i = undo.length - 1; i >= 0; i--) {
             console.log(undo[i]);
-            if(undo[i].isWithin(pos.x,pos.y)){
+            if (undo[i].isWithin(pos.x, pos.y)) {
                 shape = undo[i];
-                undo.splice(i,1);
+                undo.splice(i, 1);
                 console.log(shape);
                 reDraw(context);
                 break;
             }
         }
     }
-    if(shape !== null) {
+    if (shape !== null) {
         shape.draw(dummyContext, mouseIsDown);
     }
 }
 
-function mouseMove(event){
+function mouseMove(event) {
     if (mouseIsDown && shape !== null) {
         var pos = getMousePos(dummyCanvas, event);
-        if(selection) {
+        if (selection) {
             shape.moveTo(pos.x, pos.y);
-        }
-        else {
+        } else {
             shape.endPoints(pos.x, pos.y);
-        }        
-        if(toolbar.shape !== 'pen'){
+        }
+        if (toolbar.shape !== 'pen') {
             dummyContext.clearRect(0, 0, dummyCanvas.width, dummyCanvas.height);
         }
         shape.draw(dummyContext, mouseIsDown);
-        if(selection){
+        if (selection) {
             shape.draw(dummyContext, false);
         }
     }
 }
 
-function mouseUp(event){
+function mouseUp(event) {
     if (mouseIsDown && shape !== null) {
         mouseIsDown = false;
         var pos = getMousePos(canvas, event);
-        if (selection){
-            shape.moveTo(pos.x,pos.y);
-        }
-        else {
+        if (selection) {
+            shape.moveTo(pos.x, pos.y);
+        } else {
             shape.endPoints(pos.x, pos.y);
         }
         dummyContext.clearRect(0, 0, canvas.width, canvas.height);
@@ -169,39 +162,36 @@ function mouseUp(event){
     }
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
     init();
     // Listeners
     dummyCanvas.addEventListener('mousedown', mouseDown);
     dummyCanvas.addEventListener('mousemove', mouseMove);
     dummyCanvas.addEventListener('mouseup', mouseUp);
 
-
-    $('#toolbar').click(function(){
+    $('#toolbar').click(function() {
         loadToolbar();
     });
 
-    $('#undoBtn').click(function(){
+    $('#undoBtn').click(function() {
         undoAction();
     });
 
-    $('#redoBtn').click(function(){
+    $('#redoBtn').click(function() {
         redoAction();
     });
 
-    $('#clearBtn').click(function(){
+    $('#clearBtn').click(function() {
         clearCanvas();
     });
-        
 
-    $('#defaultColors > button').click(function(){
+    $('#defaultColors > button').click(function() {
         var newColor = $(this).attr('value');
         $('.jscolor').val(newColor);
-        $('#colorPicker').css('background-color', '#'+newColor);
+        $('#colorPicker').css('background-color', '#' + newColor);
     });
 
-    $('#saveBtn').click(function(){
-        
-    });
+    $('#saveBtn').click(function() {
 
+    });
 });
