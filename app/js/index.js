@@ -112,11 +112,9 @@ function mouseDown(event) {
         selection = true;
         shape = null;
         for (var i = undo.length - 1; i >= 0; i--) {
-            console.log(undo[i]);
             if (undo[i].isWithin(pos.x, pos.y)) {
                 shape = undo[i];
                 undo.splice(i, 1);
-                console.log(shape);
                 reDraw(context);
                 break;
             }
