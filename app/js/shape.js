@@ -7,7 +7,7 @@ class Shape {
         this.color = color;
         this.lineWidth = lineWidth;
     }
-    
+
     endPoints(x, y) {
         this.endX = x;
         this.endY = y;
@@ -170,7 +170,7 @@ class Circle extends Shape {
         }
         context.closePath();
         context.lineWidth = this.lineWidth;
-        context.strokeStyle = "#" + this.color;
+        context.strokeStyle = '#' + this.color;
         context.stroke();
     }
 }
@@ -193,7 +193,7 @@ class Text extends Shape {
     }
 
     draw(context) {
-        context.font = this.fontSize + "px " + this.font;
+        context.font = this.fontSize + 'px ' + this.font;
         context.fillStyle = '#' + this.color;
         context.fillText(this.text, this.startX, this.startY);
     }
@@ -208,7 +208,7 @@ class Line extends Shape {
         context.moveTo(this.startX, this.startY);
         context.lineTo(this.endX, this.endY)
         context.lineWidth = this.lineWidth;
-        context.strokeStyle = "#" + this.color;
+        context.strokeStyle = '#' + this.color;
         context.stroke();
     }
 }
