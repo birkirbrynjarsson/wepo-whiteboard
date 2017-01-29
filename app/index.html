@@ -15,7 +15,35 @@
         <div class="navbar navbar-inverse navbar-fixed-left" id="toolbar" style="z-index: 2;">
             <h1>Kanner</h1>
             <hr>
+            <div id="colorDiv">
+               <p>Color</p>
+               <input class="form-control jscolor" id="colorPicker" value="000000">
+           </div>
+           <hr>
+           <div id="sliderDiv">
+               <p id="lineWidthP">Thickness</p>
+                <div class="range-slider">
+                    <input class="range-slider__range" id="lineWidth" type="range" value="1" min="1" max="50">
+                    <span class="range-slider__value" id="lineWidthP">0</span>
+                </div>
+           </div>
+           <hr>
+           <div id="undoButtons">
+                <label class="btn btn-info btn-sm" id="undoBtn">
+                     <span class="fa fa-undo"></span>
+                     Undo
+                </label>
+                <label class="btn btn-info btn-sm" id="redoBtn">
+                     <span class="fa  fa-repeat"></span>
+                     Redo
+                </label>
+                
+            </div>
             <div class="btn-group-vertical" data-toggle="buttons" id="shape">
+                <label class="btn btn-info">
+                     <span class="fa fa-hand-stop-o"></span>
+                    <input type="radio" name="shape" id="select" value="select" autocomplete="off"> Select
+                </label>
                 <label class="btn btn-info active">
                     <span class="fa fa-pencil"></span> 
                     <input type="radio" name="shape" id="pen" value="pen" autocomplete="off" checked> Pen
@@ -32,44 +60,12 @@
                      <span class="glyphicon glyphicon-minus"></span>
                     <input type="radio" name="shape" id="line" value="line" autocomplete="off"> Line
                 </label>
-                <label class="btn btn-info">
+                <label class="btn btn-info" id="txtBtn">
                      <span class="fa fa-font"></span>
                     <input type="radio" name="shape" id="text" value="text" autocomplete="off"> Text
                 </label>
-                <label class="btn btn-info">
-                     <span class="fa fa-eraser"></span>
-                    <input type="radio" name="shape" id="eraser" value="eraser" autocomplete="off"> Eraser
-                </label>
-                <label class="btn btn-info">
-                     <span class="fa fa-hand-stop-o"></span>
-                    <input type="radio" name="shape" id="select" value="select" autocomplete="off"> Select
-                </label>
             </div>
-            <div id="undoButtons">
-                <label class="btn btn-info btn-sm" id="undoBtn">
-                     <span class="fa fa-undo"></span>
-                     Undo
-                </label>
-                <label class="btn btn-info btn-sm" id="redoBtn">
-                     <span class="fa  fa-repeat"></span>
-                     Redo
-                </label>
-                
-            </div>
-           <hr>
-           <div id="colorDiv">
-               <p>Color</p>
-               <input class="form-control jscolor" id="colorPicker" value="000000">
-           </div>
-           <hr>
-           <div id="sliderDiv">
-               <p id="lineWidthP">Thickness</p>
-                <div class="range-slider">
-                    <input class="range-slider__range" id="lineWidth" type="range" value="1" min="1" max="50">
-                    <span class="range-slider__value" id="lineWidthP">0</span>
-                </div>
-           </div>
-           <hr>
+            <hr>
            <div id="fontDiv">
                <div id="fontPicker">
                    <p>Font</p>
