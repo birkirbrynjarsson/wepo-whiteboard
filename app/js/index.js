@@ -154,4 +154,8 @@ $(document).ready(function(){
         $('#colorPicker').css('background-color', '#'+newColor);
     });
 
+    $('#saveBtn').click(function(){
+        
+    });
+
 });
