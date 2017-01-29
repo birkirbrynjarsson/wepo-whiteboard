@@ -98,7 +98,7 @@ function mouseDown(event){
     }
     else if(toolbar.shape === 'text') {
         shape = new Text(pos.x, pos.y, toolbar.color, toolbar.font, toolbar.fontSize, toolbar.text);
-
+        
     }
     // dummyContext.clearRect(0, 0, canvas.width, canvas.height);
     shape.draw(dummyContext, mouseIsDown);
@@ -146,6 +146,12 @@ $(document).ready(function(){
 
     $('#redoBtn').click(function(){
         redoAction();
+    });
+
+    $('#defaultColors > button').click(function(){
+        var newColor = $(this).attr('value');
+        $('.jscolor').val(newColor);
+        $('#colorPicker').css('background-color', '#'+newColor);
     });
 
 });
