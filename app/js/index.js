@@ -190,8 +190,4 @@ $(document).ready(function() {
         $('.jscolor').val(newColor);
         $('#colorPicker').css('background-color', '#' + newColor);
     });
-
-    $('#saveBtn').click(function() {
-
-    });
 });
