@@ -1,5 +1,6 @@
 var canvas, dummyCanvas, context, dummyContext, toolbar, undo, redo;
 var shape;
+var selection = false;
 var mouseIsDown = false;
 
 function init(){
@@ -78,6 +79,13 @@ function redoAction(){
     }
 }
 
+function reDraw(context){
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    undo.forEach(function(x){
+        x.draw(context, false);
+    });
+}
+
 
 function mouseDown(event){
     mouseIsDown = true;
@@ -97,34 +105,67 @@ function mouseDown(event){
         shape = new Circle(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
     }
     else if(toolbar.shape === 'text') {
+        // $('#box').css({visibility:'visible',top:pos.y,left:pos.x});
+        // var textArea = document.getElementById('txt');
+        // $('#txt').focus();
+        // // while(document.activeElement === textArea){
+
+        // // }
         shape = new Text(pos.x, pos.y, toolbar.color, toolbar.font, toolbar.fontSize, toolbar.text);
-
     }
-    // dummyContext.clearRect(0, 0, canvas.width, canvas.height);
-    shape.draw(dummyContext, mouseIsDown);
-}
-
-function mouseMove(event){
-    if (mouseIsDown) {
-        var pos = getMousePos(dummyCanvas, event);
-        shape.endPoints(pos.x, pos.y);
-        if(toolbar.shape !== 'pen'){
-            dummyContext.clearRect(0, 0, dummyCanvas.width, dummyCanvas.height);
+    else if(toolbar.shape === 'select'){
+        selection = true;
+        shape = null;
+        for(var i = undo.length-1; i >= 0; i--){
+            console.log(undo[i]);
+            if(undo[i].isWithin(pos.x,pos.y)){
+                shape = undo[i];
+                undo.splice(i,1);
+                console.log(shape);
+                reDraw(context);
+                break;
+            }
         }
+    }
+    if(shape !== null) {
         shape.draw(dummyContext, mouseIsDown);
     }
 }
 
+function mouseMove(event){
+    if (mouseIsDown && shape !== null) {
+        var pos = getMousePos(dummyCanvas, event);
+        if(selection) {
+            shape.moveTo(pos.x, pos.y);
+        }
+        else {
+            shape.endPoints(pos.x, pos.y);
+        }        
+        if(toolbar.shape !== 'pen'){
+            dummyContext.clearRect(0, 0, dummyCanvas.width, dummyCanvas.height);
+        }
+        shape.draw(dummyContext, mouseIsDown);
+        if(selection){
+            shape.draw(dummyContext, false);
+        }
+    }
+}
+
 function mouseUp(event){
-    if (mouseIsDown) {
+    if (mouseIsDown && shape !== null) {
         mouseIsDown = false;
         var pos = getMousePos(canvas, event);
-        shape.endPoints(pos.x, pos.y);
+        if (selection){
+            shape.moveTo(pos.x,pos.y);
+        }
+        else {
+            shape.endPoints(pos.x, pos.y);
+        }
         dummyContext.clearRect(0, 0, canvas.width, canvas.height);
         shape.draw(context, mouseIsDown);
         undo.push(shape);
         redo = [];
-        console.log(toolbar.text);
+        selection = false;
     }
 }
 
