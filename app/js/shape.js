@@ -121,11 +121,18 @@ class Circle extends Shape {
 }
 
 class Text extends Shape {
-    constructor(text, fontSize, font) {
-        super();
+    constructor(startX, startY, color, font, fontSize, text) {
+        super(startX, startY, startX, startY, color, lineWidth);
         this.text = text;
         this.fontSize = fontSize;
         this.font = font;
+    }
+
+    draw(context) {
+        context.font = this.fontSize + "px " + this.font;
+        context.fillStyle = '#' + this.color;
+        context.fillText(this.text, this.startX, this.startY);
+        
     }
 }
 

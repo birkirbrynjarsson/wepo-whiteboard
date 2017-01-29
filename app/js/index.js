@@ -1,4 +1,4 @@
-var canvas, dummyCanvas, context, dummyContext, toolbar, layers;
+var canvas, dummyCanvas, context, dummyContext, toolbar, undo, redo;
 var shape;
 var mouseIsDown = false;
 
@@ -16,7 +16,6 @@ function init(){
     canvas.width = screen.width;
     canvas.height = screen.height;
     
-    layers = new Array();
     undo = new Array();
     redo = new Array();
 
@@ -55,6 +54,7 @@ function loadToolbar() {
     toolbar.font = $('#fontP').val();
     toolbar.fontSize = $('#fontS').val();
     toolbar.lineWidth = $('#lineWidth').val();
+    toolbar.text = $('#txt').val();
 }
 
 function undoAction(){
@@ -78,6 +78,7 @@ function redoAction(){
     }
 }
 
+
 function mouseDown(event){
     mouseIsDown = true;
     loadToolbar();
@@ -96,6 +97,7 @@ function mouseDown(event){
         shape = new Circle(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
     }
     else if(toolbar.shape === 'text') {
+        shape = new Text(pos.x, pos.y, toolbar.color, toolbar.font, toolbar.fontSize, toolbar.text);
 
     }
     // dummyContext.clearRect(0, 0, canvas.width, canvas.height);
@@ -122,7 +124,7 @@ function mouseUp(event){
         shape.draw(context, mouseIsDown);
         undo.push(shape);
         redo = [];
-        
+        console.log(toolbar.text);
     }
 }
 
