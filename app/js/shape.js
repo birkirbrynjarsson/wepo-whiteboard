@@ -133,6 +133,7 @@ class Text extends Shape {
         context.fillStyle = '#' + this.color;
         context.fillText(this.text, this.startX, this.startY);
         
+        
     }
 }
 
