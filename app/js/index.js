@@ -55,6 +55,7 @@ function loadToolbar() {
     toolbar.fontSize = $('#fontS').val();
     toolbar.lineWidth = $('#lineWidth').val();
     toolbar.text = $('#txt').val();
+    
 }
 
 function undoAction(){
@@ -78,6 +79,11 @@ function redoAction(){
     }
 }
 
+function clearCanvas(){
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    undo = [];
+    redo = [];
+}
 
 function mouseDown(event){
     mouseIsDown = true;
@@ -147,6 +153,11 @@ $(document).ready(function(){
     $('#redoBtn').click(function(){
         redoAction();
     });
+
+    $('#clearBtn').click(function(){
+        clearCanvas();
+    });
+        
 
     $('#defaultColors > button').click(function(){
         var newColor = $(this).attr('value');

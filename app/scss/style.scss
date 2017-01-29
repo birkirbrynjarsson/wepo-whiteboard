@@ -46,6 +46,26 @@ body {
     margin-right: 10px;
 }
 
+#clearCanvas {
+    width: 80%;
+    margin-left: 20px;
+
+}
+
+#clearCanvas > label{
+    align-self: left;
+    text-align: left;
+    margin-top: 1px;
+}
+
+#clearCanvas > label > span {
+    margin-right: 10px;
+}
+
+#clearBtn {
+    padding: 6px 23px;
+}
+
 /*#text{
     float: left;    
     display: none;
