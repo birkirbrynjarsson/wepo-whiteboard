@@ -46,6 +46,53 @@ body {
     margin-right: 10px;
 }
 
+#clearCanvas {
+    width: 80%;
+    margin-left: 20px;
+
+}
+
+#clearCanvas > label{
+    align-self: left;
+    text-align: left;
+    margin-top: 1px;
+}
+
+#clearCanvas > label > span {
+    margin-right: 10px;
+}
+
+#clearBtn {
+    padding: 6px 23px;
+}
+
+/*#text{
+    float: left;    
+    display: none;
+}
+
+#textButton > label {
+    align-self: left;
+    text-align: left;
+}
+
+#textButton > label > span {
+   margin: 1px;
+}
+#txtBtn {
+    width: 85%;
+    margin-bottom: 20px;
+}*/
+
+#textProperty {
+    margin-left: 0px;
+    margin-right: 5px;
+    color: lightgrey;
+    align-self: left;
+    margin-right: 78px;
+    
+}
+
 .colorcontrol {
     width: 80%;
     text-align: left;
@@ -59,6 +106,7 @@ body {
     text-align: right;
     align-content: right;
 }*/
+
 
 #colorPicker {
     width: 80px;
@@ -133,6 +181,44 @@ body {
     padding-top: 8px;
 }
 
+#defaultColors {
+    width: 100%;
+    float: left;
+}
+#defaultColors > button {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 10px;
+    
+}
+
+#defaultColors > .red{
+    background-color: red;
+    border: 1px solid white;
+}
+#defaultColors > .black{
+    background-color: black;
+    border: 1px solid white;
+}
+
+#defaultColors > .green{
+    background-color: green;
+    border: 1px solid white;
+}
+
+#defaultColors > .blue{
+    background-color:blue;
+    border: 1px solid white;
+}
+
 #fontP {
     width: 60%;
     height: 30px;
@@ -144,7 +230,7 @@ body {
     height: 30px;
 }
 
-#saveBtn {
+#saveBtn, #loadBtn {
     width: 80%;
     align-self: center;
     //text-align: left;
@@ -153,4 +239,15 @@ body {
 
 #saveBtn > span {
     margin-right: 5px;
+}
+
+#box {
+    padding-top: 10px;
+}
+
+#txt {
+    resize: none;
+    padding: 5px 5px;
+    //margin: 8px 0;
+  //  box-sizing: border-box;
 }

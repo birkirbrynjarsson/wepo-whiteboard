@@ -56,6 +56,7 @@ function loadToolbar() {
     toolbar.fontSize = $('#fontS').val();
     toolbar.lineWidth = $('#lineWidth').val();
     toolbar.text = $('#txt').val();
+    
 }
 
 function undoAction(){
@@ -86,6 +87,11 @@ function reDraw(context){
     });
 }
 
+function clearCanvas(){
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    undo = [];
+    redo = [];
+}
 
 function mouseDown(event){
     mouseIsDown = true;
@@ -105,12 +111,6 @@ function mouseDown(event){
         shape = new Circle(pos.x, pos.y, pos.x, pos.y, toolbar.color, toolbar.lineWidth);
     }
     else if(toolbar.shape === 'text') {
-        // $('#box').css({visibility:'visible',top:pos.y,left:pos.x});
-        // var textArea = document.getElementById('txt');
-        // $('#txt').focus();
-        // // while(document.activeElement === textArea){
-
-        // // }
         shape = new Text(pos.x, pos.y, toolbar.color, toolbar.font, toolbar.fontSize, toolbar.text);
     }
     else if(toolbar.shape === 'select'){
@@ -187,6 +187,21 @@ $(document).ready(function(){
 
     $('#redoBtn').click(function(){
         redoAction();
+    });
+
+    $('#clearBtn').click(function(){
+        clearCanvas();
+    });
+        
+
+    $('#defaultColors > button').click(function(){
+        var newColor = $(this).attr('value');
+        $('.jscolor').val(newColor);
+        $('#colorPicker').css('background-color', '#'+newColor);
+    });
+
+    $('#saveBtn').click(function(){
+        
     });
 
 });

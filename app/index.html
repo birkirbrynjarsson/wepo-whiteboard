@@ -15,7 +15,47 @@
         <div class="navbar navbar-inverse navbar-fixed-left" id="toolbar" style="z-index: 2;">
             <h1>Kanner</h1>
             <hr>
+            <div id="colorDiv">
+               <p>Color</p>
+               <input class="form-control jscolor" id="colorPicker" value="000000">
+           </div>
+           <div class="btn-group" id="defaultColors">
+               <button class="button black" id="blackDefault" value="000000"></button>
+                <button class="button red" id="redDefault" value="FF0000"></button>
+                <button class="button blue" id="blueDefault" value="0000FF"></button>
+                <button class="button green" id="greenDefault" value="008000"></button>
+           </div>
+           <hr>
+           <div id="sliderDiv">
+               <p id="lineWidthP">Thickness</p>
+                <div class="range-slider">
+                    <input class="range-slider__range" id="lineWidth" type="range" value="1" min="1" max="50">
+                    <span class="range-slider__value" id="lineWidthP">0</span>
+                </div>
+           </div>
+           <hr>
+           <div id='clearCanvas'>
+               <label class="btn btn-info" id='clearBtn'>
+                     <span class="fa fa-file-o"></span>
+                     Clear Canvas
+                </label>
+           </div>
+           <div id="undoButtons">
+                <label class="btn btn-info btn-sm" id="undoBtn">
+                     <span class="fa fa-undo"></span>
+                     Undo
+                </label>
+                <label class="btn btn-info btn-sm" id="redoBtn">
+                     <span class="fa  fa-repeat"></span>
+                     Redo
+                </label>
+                
+            </div>
             <div class="btn-group-vertical" data-toggle="buttons" id="shape">
+                <label class="btn btn-info">
+                    <span class="fa fa-hand-stop-o"></span>
+                    <input type="radio" name="shape" id="select" value="select" autocomplete="off"> Select
+                </label>
                 <label class="btn btn-info active">
                     <span class="fa fa-pencil"></span> 
                     <input type="radio" name="shape" id="pen" value="pen" autocomplete="off" checked> Pen
@@ -32,52 +72,20 @@
                      <span class="glyphicon glyphicon-minus"></span>
                     <input type="radio" name="shape" id="line" value="line" autocomplete="off"> Line
                 </label>
-                <label class="btn btn-info">
+                <label class="btn btn-info" id="txtBtn">
                      <span class="fa fa-font"></span>
                     <input type="radio" name="shape" id="text" value="text" autocomplete="off"> Text
                 </label>
-                <label class="btn btn-info">
-                     <span class="fa fa-eraser"></span>
-                    <input type="radio" name="shape" id="eraser" value="eraser" autocomplete="off"> Eraser
-                </label>
-                <label class="btn btn-info">
-                     <span class="fa fa-hand-stop-o"></span>
-                    <input type="radio" name="shape" id="select" value="select" autocomplete="off"> Select
-                </label>
             </div>
-            <div id="undoButtons">
-                <label class="btn btn-info btn-sm" id="undoBtn">
-                     <span class="fa fa-undo"></span>
-                     Undo
-                </label>
-                <label class="btn btn-info btn-sm" id="redoBtn">
-                     <span class="fa  fa-repeat"></span>
-                     Redo
-                </label>
-                
-            </div>
-           <hr>
-           <div id="colorDiv">
-               <p>Color</p>
-               <input class="form-control jscolor" id="colorPicker" value="000000">
-           </div>
-           <hr>
-           <div id="sliderDiv">
-               <p id="lineWidthP">Thickness</p>
-                <div class="range-slider">
-                    <input class="range-slider__range" id="lineWidth" type="range" value="1" min="1" max="50">
-                    <span class="range-slider__value" id="lineWidthP">0</span>
-                </div>
-           </div>
-           <hr>
+            <hr>
            <div id="fontDiv">
                <div id="fontPicker">
                    <p>Font</p>
                    <select class="form-control btn btn-info" id="fontP">
                        <option value="Arial">Arial</option>
                        <option value="Calibri">Calibri</option>
+                       <option value="Courier">Courier</option>
                        <option value="Times New Roman">Times New Roman</option>
-                       <option value="Verdana">Verdana</option>
                    </select>
                </div>
                <div id="fontSize">
@@ -85,21 +93,27 @@
                    <select class="form-control btn btn-info" id="fontS">
                        <option value="10">10 px</option>
                        <option value="12">12 px</option>
-                       <option value="14">14 px</option>
+                       <option value="14" selected='selected'>14 px</option>
                        <option value="16">16 px</option>
                        <option value="18">18 px</option>
+                       <option value="20">20 px</option>
                    </select>
                </div>
+                <div id="box">
+                    <textarea id="txt" placeholder="Type your text here..."></textarea>
+                </div>  
            </div>
            <hr>
            <label class="btn btn-info" id="saveBtn">
                      <span class="fa fa-save"></span>
                      Save
             </label>
-            <!--<div id="box" style="visibility:hidden;position:absolute;z-index: 3;">-->
-            <div id="box">
-                <textarea id="txt" placeholder="placeholder. type here."></textarea>
-            </div>  
+
+            <label class="btn btn-info" id="loadBtn">
+                     <span class="fa  fa-folder-open"></span>
+                     Load
+            </label>
+
         </div>
         <div class="container">
             <div class="row">
@@ -107,97 +121,7 @@
                  <canvas id='dummyCanvas' style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
             </div>
         </div>  
-
-
-<!--   <div id="mainFont">
-            <div id="fontDiv">
-                <p>Font</p>
-                    <select class="form-control btn btn-info" id="fontPicker">
-                        <option id="timesNew" value="'Times New Roman', Times, serif">Times New Roman</option>
-                        <option id="impact" value="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Impact</option>
-                    </select>
-            </div>
-            <div id="fontSizeDiv">
-                    <p>Size</p>
-                    <select class="form-control btn btn-info" id="fontSize">
-                        <option>10px</option>
-                        <option>11px</option>
-                        <option>12px</option>
-                        <option>13px</option>
-                        <option>14px</option>
-                        <option>15px</option>
-                        <option>16px</option>
-                        <option>17px</option>
-                    </select>
-            </div>
-           </div>-->
-
-
-
-  <!--      <div class="container">
-            <div class="row">
-                <div class="col-md-2 no-float" id="left">
-
-                </div>
-                <div class="col-md-10 no-float" id="right"></div>
-            </div>
-        </div>-->
-     <!--   <div id='toolbar'>
-            <div id='thickness'>
-                Thickness <span id='thickval'>10</span>
-                <div id='decrease' class='toolbarcontrol'>+</div>
-                <div id='increase' class='toolbarcontrol'>-</div>
-                <div id='colors' class='colorcontrol'> 
-                    Color: <input class="jscolor" value='000000'>
-                </div>
-            </div>
-            <div id="shapes">
-                    <div class='button active'> </div>
-                    <div class='button'>
-                        <label>
-                            <input type="radio" name="shape" checked="checked" value="pen">Pen
-                        </label> 
-                    </div>
-                    <div class="button">
-                        <label>
-                            <input type="radio" name="shape" value="line">Line
-                        </label>
-                    </div>
-                    <div class="button">
-                        <label>
-                            <input type="radio" name="shape" value="rectangle">Rect
-                        </label>
-                    </div>
-                    <div class="button">
-                        <label>
-                            <input type="radio" name="shape" value="circle">Circle
-                        </label>
-                    </div>
-                     <div class="button">
-                        <label>
-                            <input type="radio" name="shape" value="text">Text
-                        </label>
-                    </div>
-                </div>
-        </div>
-        <canvas id='myCanvas'></canvas>-->
-
-        <!--<nav class="navbar navbar-inverse floating-menu">
-            <h2>Toolbar</h2>
-            <div class="btn-group-vertical" id="shapeBtn">
-                <div class="radio">
-                    <label><input type="radio" name="shape" checked="checked" value="pen">Pen</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="shape" value="rectangle">Rectangle</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="shape" value="circle">Circle</label>
-                </div>
-            </div>
-            <p>Color: <input class="jscolor" value='000000'></p>
-        </nav>-->
-
+        
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js'></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>       
         <script type="text/javascript" src="js/shape.js"></script>
